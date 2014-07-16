@@ -8,7 +8,9 @@ describe "Creating todo lists" do
     options[:description] ||= "This is my todo list."
 
     visit "/todo_lists"
+	puts page.body
     click_link "New Todo list"
+
     expect(page).to have_content("New todo_list")
 
     fill_in "Title", with: options[:title]
@@ -17,7 +19,7 @@ describe "Creating todo lists" do
   end
   
   before do
-	sign_in(user)
+	sign_in user, password: "treehouse1"
   end
 
   it "redirects to the todo list index page on success" do
